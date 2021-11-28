@@ -22,9 +22,26 @@ namespace Mood_Analyzer_Program
                 else
                     return "SAD";
             }
-            catch(NullReferenceException msg)
+            catch(NullReferenceException ex)
             {
-                return "Happy";
+                throw new CustomException(CustomException.ExceptionType.Null_Type_Exception, "Message should not be null");
+            }
+        }
+
+        public string AnalyseMood1()
+        {
+            try
+            {
+                if (msg.ToLower().Contains(string.Empty))
+                {
+                    return "happy";
+                }
+                else
+                    return "sad";
+            }
+            catch (NullReferenceException ex)
+            {
+                throw new CustomException(CustomException.ExceptionType.Empty_Type_Exception, "Message should not be empty");
             }
         }
     }
