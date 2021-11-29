@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mood_Analyzer_Program;
+
 namespace Mood_Analyzer_Test
 {
     [TestClass]
@@ -27,7 +28,6 @@ namespace Mood_Analyzer_Test
             try
             {
                 string actual = modeAnalyzer.AnalyseMood();
-
             }
             catch (CustomException ex)
             {
@@ -44,13 +44,64 @@ namespace Mood_Analyzer_Test
             try
             {
                 string actual = modeAnalyzer.AnalyseMood1();
-
             }
             catch (CustomException ex)
             {
                 Assert.AreEqual(expected, ex.Message);
             }
+        }
 
+        [TestMethod]
+
+        public void MoodAnalyseClassName()
+        {
+            try
+            {
+                string msg = null;
+
+                object expected = new MoodAnalyzer(msg);
+                object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser");
+                expected.Equals(obj);
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Class not found", ex.Message);
+            }
+        }
+
+        [TestMethod]
+
+        public void MoodAnalyseWrongClassName()
+        {
+            try
+            {
+                string msg = null;
+                object expected = new MoodAnalyzer(msg);
+                object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzerProblem.MoodAnalyserWrong", "MoodAnalyserWrong");
+                expected.Equals(obj);
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Class not found", ex.Message);
+            }
+        }
+
+        [TestMethod]
+
+        public void MoodAnalyseWrongConstructor()
+        {
+            try
+            {
+                string msg = null;
+                object expected = new MoodAnalyzer(msg);
+                object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserWrong");
+                expected.Equals(obj);
+            }
+
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Constructor not found", ex.Message);
+            }
         }
     }
 }
