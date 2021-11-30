@@ -7,7 +7,7 @@ namespace Mood_Analyzer_Program
     public class MoodAnalyzer
     {
         public string msg;
-        public MoodAnalyzer(string message)
+        public MoodAnalyzer(string msg)
         {
             this.msg = msg;
         }
