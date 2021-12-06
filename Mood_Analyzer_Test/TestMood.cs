@@ -164,5 +164,40 @@ namespace Mood_Analyzer_Test
                 Assert.AreEqual("method not found", ex.Message);
             }
         }
+
+        [TestMethod]
+        public void GivenHappy_ShouldReturnHappy_WithReflectorDynamically()
+        {
+            string result = MoodAnalyserFactory.Setfield("Happy", "message");
+            Assert.AreEqual("Happy", result);
+        }
+
+        [TestMethod]
+        public void GivenWrongFieldShouldReturnException()
+        {
+            try
+            {
+                string result = MoodAnalyserFactory.Setfield("Happy", "messageWrong");
+                Assert.AreEqual("Happy", result);
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Field not found", ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void GivenEmptyMessageShouldReturnException()
+        {
+            try
+            {
+                string result = MoodAnalyserFactory.Setfield(null, "messageWrong");
+                Assert.AreEqual("Happy", result);
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("Message should not be null", ex.Message);
+            }
+        }
     }
 }
