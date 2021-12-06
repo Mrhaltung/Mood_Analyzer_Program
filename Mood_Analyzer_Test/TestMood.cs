@@ -52,7 +52,6 @@ namespace Mood_Analyzer_Test
         }
 
         [TestMethod]
-
         public void MoodAnalyseClassName()
         {
             try
@@ -70,7 +69,6 @@ namespace Mood_Analyzer_Test
         }
 
         [TestMethod]
-
         public void MoodAnalyseWrongClassName()
         {
             try
@@ -87,7 +85,6 @@ namespace Mood_Analyzer_Test
         }
 
         [TestMethod]
-
         public void MoodAnalyseWrongConstructor()
         {
             try
@@ -105,7 +102,6 @@ namespace Mood_Analyzer_Test
         }
 
         [TestMethod]
-
         public void ParameterisedConstructor_MoodAnalyseClassName()
         {
             object expected = new MoodAnalyzer("HAPPY");
@@ -114,7 +110,6 @@ namespace Mood_Analyzer_Test
         }
 
         [TestMethod]
-
         public void ParameterisedConstructor_WrongClassName()
         {
             try
@@ -143,6 +138,30 @@ namespace Mood_Analyzer_Test
             catch (CustomException ex)
             {
                 Assert.AreEqual("Class not found", ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void GivenHappy_ShouldReturn_Happy_ReflectorInvoke_method()
+        {
+            string expected = "HAPPY";
+            string mood = MoodAnalyserFactory.InvokeAnalyseMood("Happy", "AnalyseMood");
+            Assert.AreNotEqual(expected, mood);
+        }
+
+        [TestMethod]
+        public void GivenHappy_ShouldReturnException_WithWrongMethodName()
+        {
+            try
+            {
+                string expected = "method not found";
+                string mood = MoodAnalyserFactory.InvokeAnalyseMood("Happy", "AnalyseMoodWrong");
+                Assert.AreNotEqual(expected, mood);
+            }
+
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("method not found", ex.Message);
             }
         }
     }

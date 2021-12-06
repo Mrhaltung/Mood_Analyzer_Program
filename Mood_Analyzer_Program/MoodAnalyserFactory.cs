@@ -34,7 +34,7 @@ namespace Mood_Analyzer_Program
                 throw new CustomException(CustomException.ExceptionType.NO_SUCH_METHOD, "Constructor not found");
             }
         }
-        public static object MoodAnalyserParameterisedConstructor(string className, string constrcutorName)
+        public static object MoodAnalyserParameterisedConstructor(string className, string constrcutorName, string message)
         {
             Type type = typeof(MoodAnalyzer);
             if (type.Name.Equals(className) || type.FullName.Equals(className))
@@ -55,6 +55,49 @@ namespace Mood_Analyzer_Program
             {
                 throw new CustomException(CustomException.ExceptionType.NO_SUCH_CLASS, "Class not found");
             }
+        }
+
+        public static string InvokeAnalyseMood(string message, string methodName)
+        {
+            try
+            {
+                Type type = typeof(MoodAnalyzer);
+                MethodInfo methodInfo = type.GetMethod(methodName);
+                object moodAnalyserObject = MoodAnalyserFactory.MoodAnalyserParameterisedConstructor("MoodAnalyserProblem.MoodAnalyzer", "MoodAnalyzer", message);
+                object info = methodInfo.Invoke(moodAnalyserObject, null);
+                return info.ToString();
+            }
+
+            catch (NullReferenceException)
+            {
+                throw new CustomException(CustomException.ExceptionType.NULL_VALUE, "method not found");
+            }
+        }
+
+        public static string Setfield(string message, string fieldName)
+        {
+            try
+            {
+                MoodAnalyzer moodAnalyse = new MoodAnalyzer();
+                Type type = typeof(MoodAnalyzer);
+                FieldInfo field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+                if (message == null)
+                {
+                    throw new CustomException(CustomException.ExceptionType.EMPTY_MESSAGE, "Message should not be null");
+                }
+                field.SetValue(moodAnalyse, message);
+                return moodAnalyse.msg;
+            }
+
+            catch (NullReferenceException)
+            {
+                throw new CustomException(CustomException.ExceptionType.NO_SUCH_FIELD, "Field should not be null");
+            }
+        }
+
+        public static object MoodAnalyserParameterisedConstructor(string v1, string v2)
+        {
+            throw new NotImplementedException();
         }
     }
 }

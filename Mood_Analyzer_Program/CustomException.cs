@@ -13,7 +13,10 @@ namespace Mood_Analyzer_Program
             Null_Type_Exception,
             Empty_Type_Exception,
                 NO_SUCH_CLASS,
-                NO_SUCH_METHOD
+                NO_SUCH_METHOD,
+                NULL_VALUE,
+            NO_SUCH_FIELD,
+            EMPTY_MESSAGE
         }
         public CustomException(ExceptionType type, string message) : base(message)
         {
