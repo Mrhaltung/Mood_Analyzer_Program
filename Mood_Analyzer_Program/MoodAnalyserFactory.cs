@@ -94,10 +94,5 @@ namespace Mood_Analyzer_Program
                 throw new CustomException(CustomException.ExceptionType.NO_SUCH_FIELD, "Field should not be null");
             }
         }
-
-        public static object MoodAnalyserParameterisedConstructor(string v1, string v2)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

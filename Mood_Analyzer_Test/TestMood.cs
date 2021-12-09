@@ -105,7 +105,7 @@ namespace Mood_Analyzer_Test
         public void ParameterisedConstructor_MoodAnalyseClassName()
         {
             object expected = new MoodAnalyzer("HAPPY");
-            object obj = MoodAnalyserFactory.MoodAnalyserParameterisedConstructor("MSTestMoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser");
+            object obj = MoodAnalyserFactory.MoodAnalyserParameterisedConstructor("MSTestMoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser", "HAPPY");
             expected.Equals(obj);
         }
 
@@ -115,7 +115,7 @@ namespace Mood_Analyzer_Test
             try
             {
                 object expected = new MoodAnalyzer("HAPPY");
-                object obj = MoodAnalyserFactory.MoodAnalyserParameterisedConstructor("MSTestMoodAnalyzerProblem.MoodAnalyserWrong", "MoodAnalyser");
+                object obj = MoodAnalyserFactory.MoodAnalyserParameterisedConstructor("MSTestMoodAnalyzerProblem.MoodAnalyserWrong", "MoodAnalyser","HAPPY");
                 expected.Equals(obj);
             }
 
@@ -131,7 +131,7 @@ namespace Mood_Analyzer_Test
             try
             {
                 object expected = new MoodAnalyzer("HAPPY");
-                object obj = MoodAnalyserFactory.MoodAnalyserParameterisedConstructor("MSTestMoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserWrong");
+                object obj = MoodAnalyserFactory.MoodAnalyserParameterisedConstructor("MSTestMoodAnalyzerProblem.MoodAnalyser", "MoodAnalyserWrong","HAPPY");
                 expected.Equals(obj);
             }
 
